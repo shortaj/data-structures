@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """."""
 
 
@@ -26,7 +27,7 @@ class LinkedList(object):
 
 
     def push(self, val):
-        """Will insert the value ‘data’ at the head of the list."""
+        """Will insert the value 'data' at the head of the list."""
         if not val:
             raise ValueError('You must provide a not-null value.')
         new_node = Node(val, self.head)
@@ -51,25 +52,41 @@ class LinkedList(object):
         return popped.data
 
 
-    def search(self, node):
-        """Will return the node containing ‘val’ in the list, if present,
+    def search(self, data):
+        """Will return the node containing 'val' in the list, if present,
             else None."""
+        found = False
+        while self.head.next_node is not None:
+            if self.head.data == data:
+                found = True
+                break
+            self.head = self.next_node
+        if found is False:
+            return 'None'
+        return self.head
 
 
-    def remove(self, node):
+
+    def remove(self, data):
         """ Will remove the given node from the list, wherever it might be
             (node must be an item in the list). If the node is not in the list,
              it should raise an exception with an appropriate message."""
+        
+        temp = self.head
+        if self.search(data):
+            self.h
+            self.head = self.head.next_node
 
 
-    def display(self, ):
-        """Will return a unicode string representing the list as if it were
-            a Python tuple literal: “(12, ‘sam’, 37, ‘tango’)”."""
+    # def display(self, ):
+
+    #     """Will return a unicode string representing the list as if it were
+    #         a Python tuple literal: “(12, ‘sam’, 37, ‘tango)”."""
 
 
-        def len(self, ):
-            """Return the size of the list."""
+    #     def len(self, ):
+    #         """Return the size of the list."""
 
 
-        def print(self, ):
-            """Return what the display() method returns."""
+    #     def print(self, ):
+            # """Return what the display() method returns."""

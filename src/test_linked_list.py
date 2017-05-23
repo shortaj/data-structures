@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """Tests for linked_list.py."""
 
 
@@ -72,34 +73,31 @@ def test_linked_list_size():
     assert ll.size() is 3
 
 
-# def test_linked_list_search_0(val):
-#     """Module return the node not containing ‘val’ in the list."""
-#     from linked_list import linked_list
-#     ll = linked_list()
-#     ll.push(8)
-#     assert ll.search(3) is 'None'
+def test_linked_list_search_0():
+    """Module return the node not containing val in the list."""
+    from linked_list import LinkedList
+    ll = LinkedList()
+    ll.push(8)
+    assert ll.search(3) == 'None'
 
 
-# def test_linked_list_search_1(val):
-#     """Module return the node containing ‘val’ in the list."""
-#     from linked_list import linked_list
-#     ll = linked_list()
-#     ll.push(8)
-#     ll.search(8)
-#     assert ll.head.data is 8
+def test_linked_list_search_1():
+    """Module return the node containing val in the list."""
+    from linked_list import LinkedList
+    ll = LinkedList()
+    ll.push(8)
+    ll.search(8)
+    assert ll.head.data is 8
 
 
-# def test_linked_list_remove_0(node):
-#     """Module remove the given node from the list.
-#     If the node is not in the list, it should raise an exception
-#     with an appropriate message."""
-#     from linked_list import linked_list
-#     ll = linked_list()
-#     ll.push(1)
-#     ll.push(2)
-#     ll.push(3)
-#     ll.remove(3)
-#     assert ll.head.data is 2
+def test_linked_list_remove_0():
+    """Module remove the given node from the list.
+    If the node is not in the list, it should raise an exception
+    with an appropriate message."""
+    from linked_list import LinkedList
+    ll = LinkedList((1, 2, 3))
+    ll.remove(2)
+    assert ll.head.data is 3
 
 
 # def test_linked_list_remove_1(node):

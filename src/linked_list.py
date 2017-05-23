@@ -1,5 +1,4 @@
 """."""
-a = LinkedLict([1, 2, 3])
 
 
 class Node(object):
@@ -11,51 +10,45 @@ class Node(object):
         self.next_node = next_node
 
 
-    def get_data(self):
-        return self.data
-
-
-    def get_next(self):
-        return self.next_node
-
-
-    def set_next(self, new_next):
-        try:
-            self.next_node = new_next
-
-
-
 class LinkedList(object):
     """Docstring for LinkedList."""
 
     def __init__(self, head=None):
         """Initializer for the class instance."""
         self.head = head
+        self._length = 0
+        if type(some_iterable) in [list,tuple, str]:
+            for item in some_iterable:
+                self._length += 1
+                self.push(item)
+        elif type(some_iterable) is not None:
+            raise TypeError('Requires an iterable value.')
+
 
     def push(self, data):
-        """Will insert the value ‘val’ at the head of the list."""
-        new_node = Node(data)
-        new_node.set_next(self.head)
+        """Will insert the value ‘data’ at the head of the list."""
+        if not val:
+            raise ValueError('You must provide a not-null value.')
+        new_node = Node(data, self.head)
         self.head = new_node
+        self._length += 1
 
     def size(self):
         """Will return the length of the list."""
-        current = self.head
-        count = 0
-        while current:
-            count += 1
-            current = current.get_next()
-        return count
+        return self._length
 
 
-    def push(self, val) = val:
-        """Will insert the value ‘val’ at the head of the list."""
-
-
-    def pop(self, ):
+    def pop(self):
         """Will pop the first value off the head of the list and return it.
             Raises an exception with an appropriate message if there are no
-            values to return."""
+            values to return.
+        """
+        if not self.head:
+            raise IndexError('Cannot pop from an empty list.')
+        popped = self.head
+        self.head = self.head.next_node
+        self._length -= 1
+        return popped.data
 
 
     def search(self, node):

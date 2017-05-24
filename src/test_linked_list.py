@@ -11,11 +11,18 @@ LINKED_LIST_TABLE = [
 ]
 
 
-def test_linked_list_0():
-    """When a new head is created, its head is none."""
+@pytest.fixture
+def new_empty_list():
+    """Make empty list."""
     from linked_list import LinkedList
-    ll = LinkedList()
-    assert ll.head is None
+    return LinkedList()
+
+
+def test_linked_list_0(new_empty_list):
+    """When a new head is created, its head is none."""
+    # from linked_list import LinkedList
+    # ll = LinkedList()
+    assert new_empty_list.head is None
 
 
 def test_linked_list_1():
@@ -96,19 +103,18 @@ def test_linked_list_remove_0():
     with an appropriate message."""
     from linked_list import LinkedList
     ll = LinkedList((1, 2, 3))
-    ll.remove(2)
+    ll.remove(ll.search(2))
     assert ll.head.data is 3
 
 
-# def test_linked_list_remove_1(node):
-#     """Module remove the given node from the list.
-#     If the node is not in the list, it should raise an exception
-#     with an appropriate message."""
-#     from linked_list import linked_list
-#     ll = linked_list()
-#     ll.push(8)
-#     ll.remove(3)
-#     raise Exception('No such node!')
+def test_linked_list_remove_1(node):
+    """Module remove the given node from the list.
+    If the node is not in the list, it should raise an exception
+    with an appropriate message."""
+    from linked_list import LinkedList
+    ll = LinkedList((1, 2, 3))
+    ll.remove(ll.search(8))
+    pytest.raises(Exception)
 
 
 # def test_linked_list_display():

@@ -34,6 +34,7 @@ class LinkedList(object):
         self.head = new_node
         self._length += 1
 
+
     def size(self):
         """Will return the length of the list."""
         return self._length
@@ -53,39 +54,51 @@ class LinkedList(object):
 
 
     def search(self, data):
-        """Will return the node containing 'val' in the list, if present,
+        """Will return the node containing 'data' in the list, if present,
             else None."""
         found = False
-        while self.head.next_node is not None:
-            if self.head.data == data:
+        current = self.head
+        while current is not None and found is False:
+            if current.data == data:
                 found = True
                 break
-            self.head = self.next_node
-        if found is False:
+            elif current.next_node is not None:
+                current = self.next_node
+        if current is None:
+            raise Exception('Node not avail.')
             return 'None'
-        return self.head
+        return current
 
 
 
-    def remove(self, data):
+    def remove(self, node):
         """ Will remove the given node from the list, wherever it might be
             (node must be an item in the list). If the node is not in the list,
              it should raise an exception with an appropriate message."""
-        
-        temp = self.head
-        if self.search(data):
-            self.h
-            self.head = self.head.next_node
+        previous = None
+        found = False
+        current = self.head
+        if current == node:
+            self.head = current.next_node
+            return 
+        while current is not None and found is False:
+            if current == node and current.next_node is not None:
+                previous.next_node = current.next_node
+                current.next_node = None
+                found = True
+                break
+            else:
+                previous = current
+                current = current.next_node
+        if current is None:
+            raise Exception('Node not exist.')
+        previous = self.head.next_node
 
 
     # def display(self, ):
 
     #     """Will return a unicode string representing the list as if it were
     #         a Python tuple literal: “(12, ‘sam’, 37, ‘tango)”."""
-
-
-    #     def len(self, ):
-    #         """Return the size of the list."""
 
 
     #     def print(self, ):

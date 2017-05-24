@@ -14,24 +14,27 @@ class Node(object):
 class LinkedList(object):
     """Docstring for LinkedList."""
 
-    def __init__(self, head=None):
+    def __init__(self, data=None):
         """Initializer for the class instance."""
-        self.head = head
+        self.head = None
         self._length = 0
-        if type(head) in [list, tuple, str]:
-            for item in head:
+        self.nodelist = []
+        if type(data) in [list, tuple, str]:
+            for item in data:
                 self._length += 1
                 self.push(item)
-        elif head is not None:
+                self.nodelist.append(item)
+        elif data is not None:
             raise TypeError('Requires an iterable value.')
 
 
     def push(self, val):
-        """Will insert the value 'data' at the head of the list."""
+        """Will insert the value 'val' at the head of the list."""
         if not val:
             raise ValueError('You must provide a not-null value.')
         new_node = Node(val, self.head)
         self.head = new_node
+        self.nodelist.append(val)
         self._length += 1
 
 
@@ -50,25 +53,25 @@ class LinkedList(object):
         popped = self.head
         self.head = self.head.next_node
         self._length -= 1
+        self.nodelist.pop(popped.data)
         return popped.data
+
+
+    def iterate_linked_list(self, node):
+        """Allow for simple iterations over linked lists."""
+        while node:
+            yield node
+            node = node.next_node
 
 
     def search(self, data):
         """Will return the node containing 'data' in the list, if present,
             else None."""
-        found = False
         current = self.head
-        while current is not None and found is False:
-            if current.data == data:
-                found = True
-                break
-            elif current.next_node is not None:
-                current = self.next_node
-        if current is None:
-            raise Exception('Node not avail.')
-            return 'None'
-        return current
-
+        for node in self.iterate_linked_list(current):
+            if node.data == data:
+                return node
+        return 'None'
 
 
     def remove(self, node):
@@ -80,7 +83,7 @@ class LinkedList(object):
         current = self.head
         if current == node:
             self.head = current.next_node
-            return 
+            return
         while current is not None and found is False:
             if current == node and current.next_node is not None:
                 previous.next_node = current.next_node
@@ -95,11 +98,11 @@ class LinkedList(object):
         previous = self.head.next_node
 
 
-    # def display(self, ):
+    def display(self):
+        """Will return a unicode string representing the list as if it were
+            a Python tuple literal: “(12, ‘sam’, 37, ‘tango')”."""
+        return tuple(['({})'.format(item) for item in self.nodelist])
 
-    #     """Will return a unicode string representing the list as if it were
-    #         a Python tuple literal: “(12, ‘sam’, 37, ‘tango)”."""
 
 
-    #     def print(self, ):
-            # """Return what the display() method returns."""
+

@@ -107,23 +107,18 @@ def test_linked_list_remove_0():
     assert ll.head.data is 3
 
 
-def test_linked_list_remove_1(node):
+def test_linked_list_remove_1():
     """Module remove the given node from the list.
     If the node is not in the list, it should raise an exception
     with an appropriate message."""
     from linked_list import LinkedList
     ll = LinkedList((1, 2, 3))
-    ll.remove(ll.search(8))
-    pytest.raises(Exception)
+    with pytest.raises(Exception):
+        ll.remove(ll.search(8))
 
 
-# def test_linked_list_display():
-#     """Module return a unicode string representing the list as if it were a
-#     Python tuple literal: "(12, ‘sam’, 37, ‘tango’)"."""
-#     from linked_list import linked_list
-#     ll = linked_list()
-#     ll.push(12)
-#     ll.push('sam')
-#     ll.push(37)
-#     ll.push('tango')
-#     ll.display() is "(12, ‘sam’, 37, ‘tango’)"
+def test_linked_list_display():
+    """Module return a unicode string representing the nodelist."""
+    from linked_list import LinkedList
+    ll = LinkedList((12, 'sam', 37, 'tango'))
+    ll.display() is "('12', 'sam', '37', 'tango')"

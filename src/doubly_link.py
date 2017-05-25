@@ -12,7 +12,7 @@ class Node(object):
         self.previous_node = previous_node
 
 
-class LinkedList(object):
+class DoublyLink(object):
     """Docstring for LinkedList."""
 
     def __init__(self, data=None):
@@ -29,12 +29,13 @@ class LinkedList(object):
             raise TypeError('Requires an iterable value.')
 
 
-   def push(self, val):
+    def push(self, val):
         """Will insert the value 'val' at the head of the list."""
         if not val:
             raise ValueError('You must provide a not-null value.')
         new_node = Node(val, self.head)
-        self.head.previous_node = new_node
+        if self._length > 1:
+            self.head.previous_node = new_node
         self.head = new_node
         self.nodelist.append(val)
         self._length += 1

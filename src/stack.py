@@ -1,15 +1,15 @@
-from Linked_linst import LinkedList
+from linked_list import LinkedList
 
 
 class Stack(object):
     """This module implements stack."""
-    def __init__(self, data):
+    def __init__(self, data=None):
         """Init stack instance."""
         self._new_LinkedList = LinkedList(data)
 
-    def push(self, value):
+    def push(self, data):
         """Add a value to the stack."""
-        return self._new_LinkList.push(val)
+        return self._new_LinkList.push(data)
 
 
     def pop(self):

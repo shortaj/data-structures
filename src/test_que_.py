@@ -4,118 +4,50 @@
 import pytest
 
 
-LINKED_LIST_TABLE = [
-    ([1, 2, 3], [1, 2, 3]),
-    (["a", "b", "c"], ["a", "b", "c"])
-]
-
-
 @pytest.fixture
-def new_empty_list():
+def new_empty_list(data=None):
     """Make empty list."""
     from que_ import Que
-    return Que()
+    return Que(data)
 
 
-def test_que_0(new_empty_list):
+def test_empty_que(new_empty_list):
     """When a new head is created, its head is none."""
     assert new_empty_list.head is None
 
 
-def test_que_1(new_empty_list):
+def test_new_que_multiple_nodes():
     """Module inserts a list."""
-    from que_ import Que
-    ll = Que("abc")
-    assert ll.tail.data == "c"
-    assert ll.head.next_node.data == "b"
-    assert ll.head.next_node.next_node.data == "a"
+    ll = new_empty_list('abc')
+    assert ll.head.data == "a"
+    assert ll.head.previous_node.data == "b"
+    assert ll.head.previous_node.previous_node.data == "c"
+    assert ll.head.next_node is None
+    assert ll.tail.data == 'c'
 
 
-@pytest.mark.parametrize("arg, result", LINKED_LIST_TABLE)
-def test_node_data(arg, result):
-    """Test node class."""
-    from linked_list import Node
-    new_node = Node(arg)
-    assert new_node.data == result
+def test_que_size():
+    """."""
+    new_que = new_empty_list('abcdef')
+    assert new_que.size() == 6
 
 
-def test_linked_list_push_0():
-    """Module inserts the value 'val' at the head of the list."""
-    from linked_list import LinkedList
-    ll = LinkedList()
-    ll.push(8)
-    assert ll.head.data is 8
+def test_que_peek():
+    """."""
+    new_que = new_empty_list('abcdef')
+    assert new_que.peek() == 'a'
 
 
-def test_linked_list_push_1():
-    """Module inserts the value 'val' at the head of the list."""
-    from linked_list import LinkedList
-    ll = LinkedList()
-    ll.push(1)
-    ll.push("abc")
-    ll.push(3)
-    assert ll.head.data is 3
+def test_que_peek_empty():
+    """."""
+    new_que = new_empty_list()
+    assert new_que.peek() is None
 
 
-def test_linked_list_pop():
-    """Module pops the first value off the head of the list and return it.
-    Raises an exception with an appropriate message if there are
-    no values to return."""
-    from linked_list import LinkedList
-    ll = LinkedList([1, 2, 3])
-    ll.pop()
-    assert ll.head.data is 2
-
-
-def test_linked_list_size():
-    """Module returns length of linked list."""
-    from linked_list import LinkedList
-    ll = LinkedList()
-    ll.push(1)
-    ll.push(2)
-    ll.push(3)
-    assert ll.size() is 3
-
-
-def test_linked_list_search_0():
-    """Module return the node not containing val in the list."""
-    from linked_list import LinkedList
-    ll = LinkedList()
-    ll.push(8)
-    assert ll.search(3) == 'None'
-
-
-def test_linked_list_search_1():
-    """Module return the node containing val in the list."""
-    from linked_list import LinkedList
-    ll = LinkedList()
-    ll.push(8)
-    ll.search(8)
-    assert ll.head.data is 8
-
-
-def test_linked_list_remove_0():
-    """Module remove the given node from the list.
-    If the node is not in the list, it should raise an exception
-    with an appropriate message."""
-    from linked_list import LinkedList
-    ll = LinkedList((1, 2, 3))
-    ll.remove(ll.search(2))
-    assert ll.head.data is 3
-
-
-def test_linked_list_remove_1():
-    """Module remove the given node from the list.
-    If the node is not in the list, it should raise an exception
-    with an appropriate message."""
-    from linked_list import LinkedList
-    ll = LinkedList((1, 2, 3))
-    with pytest.raises(IndexError):
-        ll.remove(ll.search(8))
-
-
-def test_linked_list_display():
-    """Module return a unicode string representing the nodelist."""
-    from linked_list import LinkedList
-    ll = LinkedList((12, 'sam', 37, 'tango'))
-    ll.display() is "(12, 'sam', 37, 'tango')"
+def test_dequeue():
+    """."""
+    new_que = new_empty_list('abc')
+    assert new_que.dequeue() == 'a'
+    assert new_que.head.data == 'b'
+    assert new_que.head.next_node is None
+    assert new_que._length == 2

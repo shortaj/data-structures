@@ -23,7 +23,6 @@ class Que(object):
 
         if type(data) in [list, tuple, str]:
             for item in data:
-                self._length += 1
                 self.enqueue(item)
 
         elif data is not None:
@@ -39,10 +38,10 @@ class Que(object):
             self.tail = self.head
         elif self._length > 1:
             new_node = Node(val)
-            current = self.head
-            self.head = new_node
-            self.head.next_node = current
-            self.head.next_node.previous_node = self.head
+            current = self.tail
+            self.tail = new_node
+            self.tail.previous_node = current
+            self.tail.previous_node.next_node = self.tail
         self._length += 1
 
 
@@ -55,12 +54,13 @@ class Que(object):
         """Remove element at the head, raise exception."""
         if not self.tail:
             raise IndexError('Cannot shift from an empty list.')
-        shifted = self.tail
-        self.tail = self.tail.previous_node
-        self.tail.next_node = None
+        shifted = self.head
+        self.head = self.head.next_node
+        self.head.previous_node = None
         self._length -= 1
         return shifted.data
 
 
-
-
+    def peek(self):
+        """returns second value in queue, returns 0 if empty queue."""
+        return None if not self.head else self.head.data

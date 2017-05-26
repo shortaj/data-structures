@@ -21,7 +21,6 @@ class LinkedList(object):
         self.nodelist = []
         if type(data) in [list, tuple, str]:
             for item in data:
-                self._length += 1
                 self.push(item)
                 self.nodelist.append(item)
         elif data is not None:

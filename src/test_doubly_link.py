@@ -31,14 +31,6 @@ def test_doubly_link_append():
     assert ll.tail.previous_node.data == 'a'
 
 
-# @pytest.mark.parametrize("arg, result", LINKED_LIST_TABLE)
-# def test_node_data(arg, result):
-#     """Test node class."""
-#     from linked_list import Node
-#     new_node = Node(arg)
-#     assert new_node.data == result
-
-
 def test_doubly_link_push():
     """Module inserts val at the head of the list."""
     ll = new_empty_list('abc')
@@ -77,6 +69,7 @@ def test_doubly_link_shift_notexist():
 
 
 def test_doubly_link_remove_middle():
+    """Test double link remove middle item."""
     ll = new_empty_list('abcde')
     ll.remove('d')
     assert ll.head.next_node.data == 'c'
@@ -84,12 +77,14 @@ def test_doubly_link_remove_middle():
 
 
 def test_doubly_link_remove_head():
+    """Test double link remove head."""
     ll = new_empty_list('abcde')
     ll.remove('e')
     assert ll.head.data == 'd'
     assert ll.head.previous_node is None
 
 def test_doubly_link_remove_tail():
+    """Test double link remove tail."""
     ll = new_empty_list('abcde')
     ll.remove('a')
     assert ll.tail.data == 'b'

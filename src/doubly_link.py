@@ -18,6 +18,7 @@ class DoublyLink(object):
     def __init__(self, data=None):
         """Initializer for the class instance."""
         self.head = None
+        self.tail = None
         self._length = 0
         self.nodelist = []
         if type(data) in [list, tuple, str]:

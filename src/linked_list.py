@@ -94,15 +94,17 @@ class LinkedList(object):
                 previous = current
                 current = current.next_node
         if current is None:
-            raise Exception('Node not exist.')
+            raise IndexError('Node not exist.')
         previous = self.head.next_node
 
 
     def display(self):
         """Will return a unicode string representing the list as if it were
             a Python tuple literal: “(12, ‘sam’, 37, ‘tango')”."""
-        return tuple(['({})'.format(item) for item in self.nodelist])
-
-
-
-
+        current = self.head
+        print("( ")
+        while current is not None:
+            print(current.data) if hasattr(current, "data") else None
+            print(current.next_node.data) if hasattr(current.next_node, "data") else None
+            current = current.next_node
+        print(")")

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-"""."""
+
+"""This module build queue."""
 
 
 class Node(object):
@@ -13,7 +14,7 @@ class Node(object):
 
 
 class Que(object):
-    """Docstring for DoublyLink."""
+    """Docstring for Queue."""
 
     def __init__(self, data=None):
         """Initialize class instance."""
@@ -27,7 +28,6 @@ class Que(object):
 
         elif data is not None:
             raise TypeError('Requires an iterable value.')
-
 
     def enqueue(self, val):
         """Insert the value 'val' at the tail of the list."""
@@ -44,11 +44,9 @@ class Que(object):
             self.tail.previous_node.next_node = self.tail
         self._length += 1
 
-
     def size(self):
         """Will return the length of the list."""
         return self._length
-
 
     def dequeue(self):
         """Remove element at the head, raise exception."""
@@ -60,7 +58,6 @@ class Que(object):
         self._length -= 1
         return shifted.data
 
-
     def peek(self):
-        """returns second value in queue, returns 0 if empty queue."""
+        """Return second value in queue, returns 0 if empty queue."""
         return None if not self.head else self.head.data

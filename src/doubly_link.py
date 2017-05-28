@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-"""."""
+
+"""This module build doubly link list."""
 
 
 class Node(object):
@@ -20,15 +21,12 @@ class DoublyLink(object):
         self.head = None
         self.tail = None
         self._length = 0
-
         if type(data) in [list, tuple, str]:
             for item in data:
                 self._length += 1
                 self.push(item)
-
         elif data is not None:
             raise TypeError('Requires an iterable value.')
-
 
     def push(self, val):
         """Insert the value 'val' at the head of the list."""
@@ -45,11 +43,9 @@ class DoublyLink(object):
             self.head.next_node.previous_node = self.head
         self._length += 1
 
-
     def size(self):
         """Will return the length of the list."""
         return self._length
-
 
     def append(self, val):
         """Append val at tail."""
@@ -64,7 +60,6 @@ class DoublyLink(object):
             self.tail = new_node
             self._length += 1
 
-
     def pop(self):
         """Pop head, raise exception."""
         if not self.head:
@@ -74,7 +69,6 @@ class DoublyLink(object):
         self.head.previous_node = None
         self._length -= 1
         return popped.data
-
 
     def shift(self):
         """Remove last value and return, raise exception."""
@@ -86,23 +80,19 @@ class DoublyLink(object):
         self._length -= 1
         return shifted.data
 
-
     def iterate_linked_list(self, node):
         """Allow for simple iterations over linked lists."""
         while node:
             yield node
             node = node.next_node
 
-
     def search(self, data):
-        """Will return the node containing 'data' in the list, if present,
-            else None."""
+        """Return the node containing 'data' in the list, else None."""
         current = self.head
         for node in self.iterate_linked_list(current):
             if node.data == data:
                 return node
         return None
-
 
     def remove(self, val):
         """Remove first instance, raise exception."""
@@ -116,11 +106,6 @@ class DoublyLink(object):
                 self._length -= 1
                 node.previous_node.next_node = node.next_node
                 node.next_node.previous_node = node.previous_node
-
-
-
-
-
 
     def _repr_(self):
         """Print the list."""

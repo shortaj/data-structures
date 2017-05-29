@@ -113,7 +113,7 @@ def test_linked_list_remove_1():
     with an appropriate message."""
     from linked_list import LinkedList
     ll = LinkedList((1, 2, 3))
-    with pytest.raises(Exception):
+    with pytest.raises(IndexError):
         ll.remove(ll.search(8))
 
 
@@ -121,4 +121,4 @@ def test_linked_list_display():
     """Module return a unicode string representing the nodelist."""
     from linked_list import LinkedList
     ll = LinkedList((12, 'sam', 37, 'tango'))
-    ll.display() is "('12', 'sam', '37', 'tango')"
+    ll.display() is "(12, 'sam', 37, 'tango')"

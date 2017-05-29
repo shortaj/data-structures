@@ -13,32 +13,36 @@ class Node(object):
 
 
 class DoublyLink(object):
-    """Docstring for LinkedList."""
+    """Docstring for DoublyLink."""
 
     def __init__(self, data=None):
-        """Initializer for the class instance."""
+        """Initialize class instance."""
         self.head = None
         self.tail = None
         self._length = 0
-        self.nodelist = []
+
         if type(data) in [list, tuple, str]:
             for item in data:
                 self._length += 1
                 self.push(item)
-                self.nodelist.append(item)
+
         elif data is not None:
             raise TypeError('Requires an iterable value.')
 
 
     def push(self, val):
-        """Will insert the value 'val' at the head of the list."""
+        """Insert the value 'val' at the head of the list."""
         if not val:
             raise ValueError('You must provide a not-null value.')
-        new_node = Node(val, self.head)
-        if self._length > 1:
-            self.head.previous_node = new_node
-        self.head = new_node
-        self.nodelist.append(val)
+        if self.head is None:
+            self.head = Node(val)
+            self.tail = self.head
+        elif self._length > 1:
+            new_node = Node(val)
+            current = self.head
+            self.head = new_node
+            self.head.next_node = current
+            self.head.next_node.previous_node = self.head
         self._length += 1
 
 
@@ -47,4 +51,77 @@ class DoublyLink(object):
         return self._length
 
 
+    def append(self, val):
+        """Append val at tail."""
+        new_node = Node(val)
+        if self.head is None:
+            self.head = new_node
+            self.tail = new_node
+            self.next_node = new_node
+        else:
+            self.tail.next_node = new_node
+            new_node.previous_node = self.tail
+            self.tail = new_node
+            self._length += 1
 
+
+    def pop(self):
+        """Pop head, raise exception."""
+        if not self.head:
+            raise IndexError('Cannot pop from an empty list.')
+        popped = self.head
+        self.head = self.head.next_node
+        self.head.previous_node = None
+        self._length -= 1
+        return popped.data
+
+
+    def shift(self):
+        """Remove last value and return, raise exception."""
+        if not self.tail:
+            raise IndexError('Cannot shift from an empty list.')
+        shifted = self.tail
+        self.tail = self.tail.previous_node
+        self.tail.next_node = None
+        self._length -= 1
+        return shifted.data
+
+
+    def iterate_linked_list(self, node):
+        """Allow for simple iterations over linked lists."""
+        while node:
+            yield node
+            node = node.next_node
+
+
+    def search(self, data):
+        """Will return the node containing 'data' in the list, if present,
+            else None."""
+        current = self.head
+        for node in self.iterate_linked_list(current):
+            if node.data == data:
+                return node
+        return None
+
+
+    def remove(self, val):
+        """Remove first instance, raise exception."""
+        node = self.search(val)
+        if node:
+            if node.previous_node is None:
+                self.pop()
+            elif node.next_node is None:
+                self.shift()
+            else:
+                self._length -= 1
+                node.previous_node.next_node = node.next_node
+                node.next_node.previous_node = node.previous_node
+
+
+
+
+
+
+    def _repr_(self):
+        """Print the list."""
+        pass

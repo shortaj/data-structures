@@ -13,5 +13,5 @@ setup(
     py_modules=['dll'],
     package_dir={'': 'src'},
     install_requires=dependencies,
-    entry_points={'console_scripts': ['dll = dll:main']}
+    entry_points={'console_scripts': ['dll = doubly_link:main']}
 )

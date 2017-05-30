@@ -61,9 +61,10 @@ def test_linked_list_push_1():
 
 
 def test_linked_list_pop():
-    """Module pops the first value off the head of the list and return it.
-    Raises an exception with an appropriate message if there are
-    no values to return."""
+    """Module pops the head of the list and return it.
+
+    Raises an exception if no value to return.
+    """
     from linked_list import LinkedList
     ll = LinkedList([1, 2, 3])
     ll.pop()
@@ -99,8 +100,9 @@ def test_linked_list_search_1():
 
 def test_linked_list_remove_0():
     """Module remove the given node from the list.
-    If the node is not in the list, it should raise an exception
-    with an appropriate message."""
+
+    If the node is not in the list, raise an exception.
+    """
     from linked_list import LinkedList
     ll = LinkedList((1, 2, 3))
     ll.remove(ll.search(2))
@@ -109,8 +111,9 @@ def test_linked_list_remove_0():
 
 def test_linked_list_remove_1():
     """Module remove the given node from the list.
-    If the node is not in the list, it should raise an exception
-    with an appropriate message."""
+
+    If the node is not in the list, raise an exception
+    """
     from linked_list import LinkedList
     ll = LinkedList((1, 2, 3))
     with pytest.raises(IndexError):
@@ -122,3 +125,11 @@ def test_linked_list_display():
     from linked_list import LinkedList
     ll = LinkedList((12, 'sam', 37, 'tango'))
     ll.display() is "(12, 'sam', 37, 'tango')"
+
+
+def test_linked_list_reverse():
+    """Module reverse linked list."""
+    from linked_list import LinkedList
+    ll = LinkedList((12, 'sam', 37, 'tango'))
+    ll.reverse()
+    ll.display() is "('tango', 37, 'sam', 12)"

@@ -94,3 +94,13 @@ class LinkedList(object):
             print(current.next_node.data) if hasattr(current.next_node, "data") else None
             current = current.next_node
         print(")")
+
+    def reverse(self):
+        current = self.head
+        previous = None
+        while current is not None:
+            next_node = current.next_node
+            current.next_node = previous
+            previous = current
+            current = next_node
+        self.head = previous

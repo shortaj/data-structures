@@ -1,5 +1,5 @@
+"""Testing for the double-link list."""
 import pytest
-
 
 
 @pytest.fixture
@@ -29,14 +29,6 @@ def test_doubly_link_append():
     ll.append(8)
     assert ll.tail.data is 8
     assert ll.tail.previous_node.data == 'a'
-
-
-# @pytest.mark.parametrize("arg, result", LINKED_LIST_TABLE)
-# def test_node_data(arg, result):
-#     """Test node class."""
-#     from linked_list import Node
-#     new_node = Node(arg)
-#     assert new_node.data == result
 
 
 def test_doubly_link_push():
@@ -77,6 +69,7 @@ def test_doubly_link_shift_notexist():
 
 
 def test_doubly_link_remove_middle():
+    """Remove a node from the middle of the list."""
     ll = new_empty_list('abcde')
     ll.remove('d')
     assert ll.head.next_node.data == 'c'
@@ -84,13 +77,22 @@ def test_doubly_link_remove_middle():
 
 
 def test_doubly_link_remove_head():
+    """Remove a node from the head of the list."""
     ll = new_empty_list('abcde')
     ll.remove('e')
     assert ll.head.data == 'd'
     assert ll.head.previous_node is None
 
+
 def test_doubly_link_remove_tail():
+    """Remove a node from the tail of the list."""
     ll = new_empty_list('abcde')
     ll.remove('a')
     assert ll.tail.data == 'b'
     assert ll.tail.next_node is None
+
+
+def test_push_then_pop():
+    """Push a new node then pop node."""
+    ll = new_empty_list('bcde')
+    assert ll.push('a').pop() == 'a'

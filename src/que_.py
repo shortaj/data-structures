@@ -41,6 +41,7 @@ class Que(object):
             last_tail.previous_node = self.tail
             self.tail.next_node = last_tail
         self._length += 1
+        return self
 
     def size(self):
         """Will return the length of the list."""

@@ -98,22 +98,18 @@ def test_linked_list_search_1():
 
 
 def test_linked_list_remove_0():
-    """Module remove the given node from the list.
-    If the node is not in the list, it should raise an exception
-    with an appropriate message."""
+    """Test that search and remove works in conjuction."""
     from linked_list import LinkedList
     ll = LinkedList((1, 2, 3))
-    ll.remove(ll.search(2))
-    assert ll.head.data is 3
+    ll.remove(ll.search(3))
+    assert ll.head.data is 2
 
 
 def test_linked_list_remove_1():
-    """Module remove the given node from the list.
-    If the node is not in the list, it should raise an exception
-    with an appropriate message."""
+    """Test the exception raise for remove."""
     from linked_list import LinkedList
     ll = LinkedList((1, 2, 3))
-    with pytest.raises(Exception):
+    with pytest.raises(IndexError):
         ll.remove(ll.search(8))
 
 

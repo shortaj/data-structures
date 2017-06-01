@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""."""
+"""An example data structure of a linked list."""
 
 
 class Node(object):
@@ -27,7 +27,6 @@ class LinkedList(object):
         elif data is not None:
             raise TypeError('Requires an iterable value.')
 
-
     def push(self, val):
         """Will insert the value 'val' at the head of the list."""
         if not val:
@@ -37,17 +36,12 @@ class LinkedList(object):
         self.nodelist.append(val)
         self._length += 1
 
-
     def size(self):
         """Will return the length of the list."""
         return self._length
 
-
     def pop(self):
-        """Will pop the first value off the head of the list and return it.
-            Raises an exception with an appropriate message if there are no
-            values to return.
-        """
+        """Return the value of the head node after removing it."""
         if not self.head:
             raise IndexError('Cannot pop from an empty list.')
         popped = self.head
@@ -56,28 +50,22 @@ class LinkedList(object):
         self.nodelist.pop(popped.data)
         return popped.data
 
-
     def iterate_linked_list(self, node):
         """Allow for simple iterations over linked lists."""
         while node:
             yield node
             node = node.next_node
 
-
     def search(self, data):
-        """Will return the node containing 'data' in the list, if present,
-            else None."""
+        """Will return the node containing 'data' in the list, if present, else None."""
         current = self.head
         for node in self.iterate_linked_list(current):
             if node.data == data:
                 return node
         return 'None'
 
-
     def remove(self, node):
-        """ Will remove the given node from the list, wherever it might be
-            (node must be an item in the list). If the node is not in the list,
-             it should raise an exception with an appropriate message."""
+        """Remove a specific node from the node list if it exists."""
         previous = None
         found = False
         current = self.head
@@ -94,15 +82,10 @@ class LinkedList(object):
                 previous = current
                 current = current.next_node
         if current is None:
-            raise Exception('Node not exist.')
+            raise IndexError('Node not exist.')
         previous = self.head.next_node
-
+        return self
 
     def display(self):
-        """Will return a unicode string representing the list as if it were
-            a Python tuple literal: “(12, ‘sam’, 37, ‘tango')”."""
+        """Return a tuple list of node data values."""
         return tuple(['({})'.format(item) for item in self.nodelist])
-
-
-
-

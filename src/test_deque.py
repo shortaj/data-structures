@@ -17,11 +17,18 @@ def test_deque_0(new_empty_list):
 
 def test_deque_1():
     """Module add to the right of deque, head left, tail right."""
+    ll = new_empty_list('ab')
+    assert ll.head.data == "a"
+    assert ll.tail == "b"
+    assert ll.head.previous_node is None
+    assert ll.tail.next_node is None
+
+
+def test_deque_2():
+    """Module add to the right of deque, head left, tail right."""
     ll = new_empty_list('abcdefg')
     assert ll.head.data == "a"
     assert ll.tail == "g"
-    assert ll.head.previous_node is None
-    assert ll.tail.next_node is None
 
 
 def test_deque_append_right():

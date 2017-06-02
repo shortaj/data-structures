@@ -36,7 +36,7 @@ def test_deque_append_right():
     ll = new_empty_list('abcdefg')
     ll.append("h")
     assert ll.tail.data is "h"
-    assert ll.tail.previous_node.data == "g"
+    assert ll.tail.next_node.data == "g"
 
 
 def test_deque_appendleft():
@@ -44,10 +44,10 @@ def test_deque_appendleft():
     ll = new_empty_list('abcdefg')
     ll.appendleft("h")
     assert ll.head.data is "h"
-    assert ll.head.next_node.data == "a"
+    assert ll.head.previous_node.data == "a"
 
 
-def test_deque_pop_right():
+def test_deque_pop():
     """Module removes val from the end of deque."""
     ll = new_empty_list("abcdefg")
     ll.pop() is "g"
@@ -57,11 +57,11 @@ def test_deque_pop_right():
 def test_deque_popleft():
     """Module removes val from the front of deque."""
     ll = new_empty_list("abcdefg")
-    assert ll.pop() == "a"
-    assert ll.head.data is "b"
+    assert ll.pop() == "g"
+    assert ll.tail.data is "f"
 
 
-def test_deque_pop_right_notexist():
+def test_deque_pop_notexist():
     """Module raise exception when deque is empty."""
     ll = new_empty_list()
     with pytest.raises(IndexError):
@@ -85,7 +85,7 @@ def test_deque_peek():
 def test_deque_peekleft():
     """Module returns a value that would have popleft."""
     ll = new_empty_list("abcdefg")
-    assert ll.peek() == "a"
+    assert ll.peekleft() == "a"
     assert ll.head.data == "a"
 
 

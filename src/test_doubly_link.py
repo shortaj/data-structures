@@ -96,3 +96,9 @@ def test_push_then_pop():
     """Push a new node then pop node."""
     ll = new_empty_list('bcde')
     assert ll.push('a').pop() == 'a'
+
+
+def test_push_then_pop_one_node():
+    """Push one node in empty list then pop node."""
+    ll = new_empty_list()
+    assert ll.push('a').pop() == 'a'

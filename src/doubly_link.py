@@ -68,9 +68,12 @@ class DoublyLink(object):
         if not self.head:
             raise IndexError('Cannot pop from an empty list.')
         popped = self.head
-        self.head = self.head.next_node
-        self.head.previous_node = None
-        self._length -= 1
+        if self._length < 2:
+            return popped.data
+        else:
+            self.head = self.head.next_node
+            self.head.previous_node = None
+            self._length -= 1
         return popped.data
 
     def shift(self):
@@ -90,7 +93,7 @@ class DoublyLink(object):
             node = node.next_node
 
     def search(self, data):
-        """Will return the node containing 'data' in the list, if present, else None."""
+        """Return node containing 'data' in list if present, else None."""
         current = self.head
         for node in self.iterate_linked_list(current):
             if node.data == data:

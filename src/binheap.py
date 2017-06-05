@@ -16,12 +16,13 @@ print(l2.heaplist)  #[9, 14, 11, 17, 18, 19, 21, 33, 27]
 class Binheap(object):
     """Docstring for binary heap."""
 
-    def __init__(self, data):
+    def __init__(self, data=None):
         """Initializer for the class instance."""
         self._length = 0
         self.heaplist = []
-        for i in data:
-            self.push(i)
+        if data:
+            for i in data:
+                self.push(i)
 
     def pop(self):
         """Remove top value in heap."""

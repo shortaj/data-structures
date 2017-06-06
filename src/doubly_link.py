@@ -69,6 +69,7 @@ class DoublyLink(object):
             raise IndexError('Cannot pop from an empty list.')
         popped = self.head
         if self._length < 2:
+            self._length -= 1
             return popped.data
         else:
             self.head = self.head.next_node

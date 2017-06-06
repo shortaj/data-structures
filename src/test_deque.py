@@ -43,15 +43,15 @@ def test_deque_appendleft():
 def test_deque_pop():
     """Module removes val from the end of deque."""
     ll = new_empty_list("abcdefg")
-    ll.pop() is "g"
+    assert ll.pop() is "g"
     assert ll.tail.data is "f"
 
 
 def test_deque_popleft():
     """Module removes val from the front of deque."""
     ll = new_empty_list("abcdefg")
-    assert ll.pop() == "g"
-    assert ll.tail.data is "f"
+    assert ll.popleft() == "a"
+    assert ll.head.data is "b"
 
 
 def test_deque_pop_notexist():
@@ -66,6 +66,34 @@ def test_deque_popleft_notexist():
     ll = new_empty_list()
     with pytest.raises(IndexError):
         ll.popleft()
+
+
+def test_deque_pop_one_node():
+    """Module removes val from the end of deque of one node."""
+    ll = new_empty_list("a")
+    assert ll.pop() is "a"
+    assert ll.size() == 0
+
+
+def test_deque_popleft_one_node():
+    """Module removes val from the front of deque of one node."""
+    ll = new_empty_list("a")
+    assert ll.popleft() == "a"
+    assert ll.size() == 0
+
+
+def test_deque_pop_two_node():
+    """Module removes val from the end of deque of two node."""
+    ll = new_empty_list("ab")
+    assert ll.pop() is "b"
+    assert ll.tail.data is "a"
+
+
+def test_deque_popleft_two_node():
+    """Module removes val from the front of deque of two node."""
+    ll = new_empty_list("ab")
+    assert ll.popleft() == "a"
+    assert ll.head.data is "b"
 
 
 def test_deque_peek():
@@ -86,3 +114,24 @@ def test_deque_size():
     """Module returns count of items in deque."""
     ll = new_empty_list("abcde")
     ll.size() == 5
+
+
+def test_deque_data_notiterableErr():
+    """Module raise exception deque datatype."""
+    ll = new_empty_list()
+    with pytest.raises(TypeError):
+        ll = new_empty_list(1)
+
+
+def test_deque_append_nullErr():
+    """Module raise exception append null."""
+    ll = new_empty_list()
+    with pytest.raises(ValueError):
+        ll.append("")
+
+
+def test_deque_appendleft_nullErr():
+    """Module raise exception append left null."""
+    ll = new_empty_list()
+    with pytest.raises(ValueError):
+        ll.appendleft("")

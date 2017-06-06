@@ -80,6 +80,9 @@ class Deque(object):
         if not self.head:
             raise IndexError('Cannot pop from an empty list.')
         shifted = self.head
+        if self._length < 2:
+            self._length -= 1
+            return shifted.data
         shifted.previous_node is None
         self.head = self.head.previous_node
         self.head.next_node = None
@@ -91,6 +94,9 @@ class Deque(object):
         if not self.head:
             raise IndexError('Cannot pop from an empty list.')
         shifted = self.tail
+        if self._length < 2:
+            self._length -= 1
+            return shifted.data
         shifted.next_node is None
         self.tail = self.tail.next_node
         self.tail.previous_node = None

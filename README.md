@@ -1,3 +1,11 @@
 # data-structures
 
-This is the Double-Linked List data structure. Unlike the Single-Linked List each Node has a reference in class to the previous and next node. The Double-Linked List itself is different in that it has a tail and head reference as opposed to just a head reference. The Double-Linked List methods have been adjusted and tested to incorporate these differences.
+This repo contains following modules:
+
+doubly_link.py, create doubly linklist per https://codefellows.github.io/sea-python-401d6/assignments/doubly_linked_list.html
+
+test_doubly_link.py, test doubly_link.py
+
+deque.py, create deque per https://codefellows.github.io/sea-python-401d6/assignments/deque.html
+
+test_deque.py, test doubly_link.py

@@ -1,5 +1,14 @@
 # -*- coding: utf-8 -*-
-"""."""
+
+"""
+
+This is the Double-Linked List data structure. Unlike the Single-Linked
+List each Node has a reference in class to the previous and next node.
+The Double-Linked List itself is different in that it has a tail and head
+reference as opposed to just a head reference. The Double-Linked List methods
+have been adjusted and tested to incorporate these differences..
+
+"""
 
 
 class Node(object):
@@ -15,24 +24,22 @@ class Node(object):
 class DoublyLink(object):
     """Docstring for DoublyLink."""
 
-    def __init__(self, data=None):
+    def __init__(self):
         """Initialize class instance."""
         self.head = None
         self.tail = None
         self._length = 0
 
-        if type(data) in [list, tuple, str]:
-            for item in data:
-                self._length += 1
-                self.push(item)
+        # if type(data) in [list, tuple, str]:
+        #     for item in data:
+        #         self._length += 1
+        #         self.push(item)
 
-        elif data is not None:
-            raise TypeError('Requires an iterable value.')
+        # elif data is not None:
+        #     raise TypeError('Requires an iterable value.')
 
     def push(self, val):
         """Insert the value 'val' at the head of the list."""
-        if not val:
-            raise ValueError('You must provide a not-null value.')
         if self.head is None:
             self.head = Node(val)
             self.tail = self.head
@@ -43,7 +50,6 @@ class DoublyLink(object):
             self.head.next_node = current
             self.head.next_node.previous_node = self.head
         self._length += 1
-        return self
 
     def size(self):
         """Will return the length of the list."""
@@ -53,15 +59,12 @@ class DoublyLink(object):
         """Append val at tail."""
         new_node = Node(val)
         if self.head is None:
-            self.head = new_node
-            self.tail = new_node
-            self.next_node = new_node
+            self.head = self.tail = new_node
         else:
             self.tail.next_node = new_node
             new_node.previous_node = self.tail
             self.tail = new_node
-            self._length += 1
-        return self
+        self._length += 1
 
     def pop(self):
         """Pop head, raise exception."""
@@ -113,4 +116,3 @@ class DoublyLink(object):
                 self._length -= 1
                 node.previous_node.next_node = node.next_node
                 node.next_node.previous_node = node.previous_node
-        return self

@@ -85,7 +85,7 @@ class Graph(object):
     def neighbors(self, val):
         """Return the list of all nodes
 
-        connected to the node containing ‘val’ by edges."""
+        connected to the node containing 'val' by edges."""
         if not self.has_node(val):
             raise KeyError('Key doesn not exist.')
         return self._graph[val]

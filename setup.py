@@ -11,8 +11,7 @@ setup(
     author='',
     author_email='',
     license='MIT',
-    py_modules=['binheap.py', 'deque.py', 'graph.py', 'graph2.py',
-                'test_deque.py', 'test_graph2.py', 'test_priorityq.py'],
+    py_modules=['binheap', 'deque', 'graph', 'graph2'],
     package_dir={'': 'src'},
     install_requires=[],
     extras_require={

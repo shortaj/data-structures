@@ -9,7 +9,7 @@ extra_packages = {
 setup(
     name='Double_Link_List',
     description='A Double Link-List.',
-    version='0.5',
+    version='0.6',
     author='Ophelia Yin and Alex Short',
     author_email='ajshort2010@hotmail.com',
     py_modules=['dll'],

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+
 """
 
 This is the Double-Linked List data structure. Unlike the Single-Linked
@@ -12,7 +13,7 @@ have been adjusted and tested to incorporate these differences..
 
 
 class Node(object):
-    """Docstring for Node."""
+    """A node class generator, holds data, next node and previous node."""
 
     def __init__(self, data=None, previous_node=None, next_node=None):
         """Initializer for the class instance."""
@@ -22,7 +23,7 @@ class Node(object):
 
 
 class DoublyLink(object):
-    """Docstring for DoublyLink."""
+    """A double-linked list class generator, with built in methods will generate manipulate data."""
 
     def __init__(self):
         """Initialize class instance."""
@@ -51,10 +52,6 @@ class DoublyLink(object):
             self.head.next_node.previous_node = self.head
         self._length += 1
 
-    def size(self):
-        """Will return the length of the list."""
-        return self._length
-
     def append(self, val):
         """Append val at tail."""
         new_node = Node(val)
@@ -67,11 +64,12 @@ class DoublyLink(object):
         self._length += 1
 
     def pop(self):
-        """Pop head, raise exception."""
+        """Pop the head off the list and returns the value. Will raise exception in case of empty list."""
         if not self.head:
             raise IndexError('Cannot pop from an empty list.')
         popped = self.head
         if self._length < 2:
+            self.head = popped.previous_node
             self._length -= 1
             return popped.data
         else:
@@ -81,7 +79,7 @@ class DoublyLink(object):
         return popped.data
 
     def shift(self):
-        """Remove last value and return, raise exception."""
+        """Remove tail and return the value, raise exception."""
         if not self.tail:
             raise IndexError('Cannot shift from an empty list.')
         shifted = self.tail

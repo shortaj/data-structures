@@ -138,4 +138,4 @@ def test_push_then_pop_one_node():
     ll = new_empty_list()
     ll.push('a')
     assert ll.pop() == 'a'
-    assert ll.size() == 0
+    assert ll._length == 0

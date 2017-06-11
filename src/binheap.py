@@ -19,49 +19,52 @@ class Binheap(object):
     def __init__(self, data=None):
         """Initializer for the class instance."""
         self._length = 0
-        self.heaplist = []
-        if data:
+        if type(data) in [list, tuple]:
+            if str in data:
+                return "Only iterable numbers puh-leeze."
             for i in data:
                 self.push(i)
+
+    def push(self, val):
+        """Add a new value to the Binheap."""
+        if val not in self:
+            self._length += 1
+            list.append(self, val)
+            self.percolate_up(len(self) - 1)
 
     def pop(self):
         """Remove top value in heap."""
         if self._length == 0:
             raise IndexError("empty list")
-        min_value = self.heaplist[0]
-        self.heaplist[0] = self.heaplist[-1]
-        del self.heaplist[-1]
+        root = self[0]
+        self[0], self[-1] = self[-1], root
+        root = list.pop(self, -1)
         self._length -= 1
-        self.percolatdown()
-        return min_value
-
-    def push(self, val):
-        """Put a new value in heap."""
-        self.heaplist.append(val)
-        self._length += 1
-        self.percolateup(self._length)
+        self.percolate_down()
+        return root
 
     def size(self):
         """Return the length of heap."""
         return self._length
 
-    def percolateup(self, totem):
-        """Move up length of heap."""
-        while totem // 2 > 0:
-            if self.heaplist[totem - 1] < self.heaplist[totem // 2 - 1]:
-                temp = self.heaplist[totem // 2 - 1]
-                self.heaplist[totem // 2 - 1] = self.heaplist[totem - 1]
-                self.heaplist[totem - 1] = temp
-            totem = totem // 2
+    def percolate_up(self, i):
+        """Move up the tree of the heap."""
+        while True:
+            if self[i] < self[(i - 1) // 2]:
+                temp = self[i]
+                self[i], self[(i - 1) // 2] = self[(i - 1) // 2], temp
+            i = (i - 1) // 2
+            if i < 1:
+                break
 
-    def percolatdown(self):
-        """Move down length of heap."""
+    def percolate_down(self):
+        """Move down the tree of the heap."""
         idx = 0
-        while idx <= self._length // 2 - 1:
+        while idx * 2 + 1 <= self._length - 1:
             leftchildidx, rightchildidx = idx * 2 + 1, idx * 2 + 2
-            minchildidx = leftchildidx if self.heaplist[rightchildidx] > self.heaplist[leftchildidx] else rightchildidx
-            if self.heaplist[idx] > self.heaplist[minchildidx]:
-                temp = self.heaplist[idx]
-                self.heaplist[idx] = self.heaplist[minchildidx]
-                self.heaplist[minchildidx] = temp
+            minchildidx = leftchildidx if self[rightchildidx] > self[leftchildidx] else rightchildidx
+            if self[idx] > self[minchildidx]:
+                temp = self[idx]
+                self[idx] = self[minchildidx]
+                self[minchildidx] = temp
         idx += 1

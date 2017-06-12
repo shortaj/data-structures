@@ -11,7 +11,7 @@ setup(
     author='',
     author_email='',
     license='MIT',
-    py_modules=['binheap', 'deque', 'graph', 'graph2'],
+    py_modules=['priorityq', 'shortpath', 'graph', 'graph2'],
     package_dir={'': 'src'},
     install_requires=[],
     extras_require={

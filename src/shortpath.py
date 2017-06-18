@@ -1,5 +1,11 @@
+"""Docstring for Dijkstra and Bellman-Ford algorithms."""
 from collections import deque
 from time import time
+
+
+class MyException(Exception):
+    """Bellman-Ford negative cycle exception."""
+    pass
 
 
 class Graphplus(object):
@@ -86,3 +92,31 @@ def time_funk(g, funk, start_val, end_val):
     funk(g, start_val, end_val)
     t1 = time()
     return 'search time ' + str(round(t1 - t0, 5)) + " sec."
+
+
+def bellford(gy, start_val, end_val):
+    """Bellman-Ford algorithm."""
+    visited, path = {}, {}
+    nodes = gy.nodes()
+    for i in nodes:
+        visited[i] = float('Inf')
+        path[i] = None
+    visited[start_val] = 0
+    for i in range(len(nodes) - 1):
+        for u in nodes:
+            for v in gy.neighbors(u):
+                if visited[v] > visited[u] + gy.wt[(u, v)]:
+                    visited[v] = visited[u] + gy.wt[(u, v)]
+                    path[v] = u
+    for u in nodes:
+        for v in gy.neighbors(u):
+            if visited[v] > visited[u] + gy.wt[(u, v)]:
+                raise MyException("Graph contains negative cycles, no cheapest path.")
+    Path = deque()
+    _end = path[end_val]
+    while _end != start_val:
+        Path.appendleft(_end)
+        _end = path[_end]
+    Path.appendleft(start_val)
+    Path.append(end_val)
+    return list(Path), visited[end_val]

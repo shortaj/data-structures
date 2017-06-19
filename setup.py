@@ -1,25 +1,19 @@
-"""The setup file for Deque, defining the required packages and console commands."""
-from setuptools import setup, find_packages
+"""Creating a package."""
 
-tests_require = [
-    'pytest',
-    'pytest-cov',
-    'tox'
-]
+from setuptools import setup
+
+tests_require = ['ipython', 'pytest', 'pytest-watch', 'tox']
 
 setup(
-    name='Deque Data Structure',
-    version='0.0',
-    description='Deque Data Structure',
-    author='Orphelia and Alex',
+    name='Deque',
+    description='A The Deque is the double-link list of the\
+     Queue link-link data structure.',
+    version='0.5',
+    author='Ophelia Yin and Alex Short',
     author_email='ajshort2010@hotmail.com',
-    url='',
-    keywords='',
-    packages=find_packages(),
-    include_package_data=True,
-    zip_safe=False,
+    py_modules=['deque'],
+    package_dir={'': 'src'},
+    install_requires= '',
     extras_require={
         'testing': tests_require,
     },
-    install_requires='',
-)

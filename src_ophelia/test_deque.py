@@ -32,26 +32,6 @@ def test_deque_append():
     assert ll.tail.next_node.data == "g"
 
 
-def test_append_value_error():
-    """."""
-    ll = new_empty_list('asdf')
-    assert ll.append() == 'Appendleft method requires a value.'
-
-
-def test_appendleft_value_error():
-    """."""
-    ll = new_empty_list('asdf')
-    assert ll.appendleft() == 'Appendleft method requires a value.'
-
-
-def test_appendleft_single_value():
-    """."""
-    ll = new_empty_list()
-    ll.appendleft('a')
-    assert ll.head.data == 'a'
-    assert ll.tail.data == 'a'
-
-
 def test_deque_appendleft():
     """Module append val to the front of deque."""
     ll = new_empty_list('abcdefg')
@@ -72,7 +52,6 @@ def test_deque_popleft():
     ll = new_empty_list("abcdefg")
     assert ll.popleft() == "a"
     assert ll.head.data is "b"
-    assert ll._length == 6
 
 
 def test_deque_pop_notexist():
@@ -128,18 +107,7 @@ def test_deque_peekleft():
     """Module returns a value that would have popleft."""
     ll = new_empty_list("abcdefg")
     assert ll.peekleft() == "a"
-
-
-def test_deque_peekleft_empty():
-    """."""
-    ll = new_empty_list()
-    assert ll.peekleft() is None
-
-
-def test_deque_peek_empty():
-    """."""
-    ll = new_empty_list()
-    assert ll.peek() is None
+    assert ll.head.data == "a"
 
 
 def test_deque_size():

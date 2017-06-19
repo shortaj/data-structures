@@ -26,6 +26,11 @@ def test_Graph_nodes_instance():
     assert isinstance(g.nodes(), list) is True
 
 
+def test_Graph_nodes_tabulate():
+    """Return list of nodes."""
+    assert sorted(g.nodes()) == ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K']
+
+
 def test_Graph_edges_num_edges():
     """Test edges return edgelist length."""
     assert len(g.edges()) == 10
@@ -34,8 +39,15 @@ def test_Graph_edges_num_edges():
 def test_Graph_edges_verify():
     """Test edges verify edges."""
     assert ('A', 'B') in g.edges()
-    assert ('E', 'J') in g.edges()
+    assert ('A', 'C') in g.edges()
+    assert ('B', 'D') in g.edges()
+    assert ('B', 'E') in g.edges()
+    assert ('C', 'F') in g.edges()
     assert ('C', 'G') in g.edges()
+    assert ('D', 'H') in g.edges()
+    assert ('D', 'I') in g.edges()
+    assert ('E', 'J') in g.edges()
+    assert ('E', 'K') in g.edges()
 
 
 def test_add_node_not_exist():
@@ -66,7 +78,7 @@ def test_add_edge_exist():
 
 def test_del_node_err():
     """Test error message if node not in dictionary."""
-    with pytest.raises(KeyError):
+    with pytest.raises(ValueError):
         g.del_node('b')
 
 

@@ -45,7 +45,7 @@ class Graph(object):
     def del_node(self, val):
         """Delete a node to graph."""
         if not self.has_node(val):
-            raise KeyError('Node doesn not exist.')
+            raise ValueError('Node doesn not exist.')
         self._graph.pop(val, None)
         for key in self._graph:
             if val in self._graph[key]:

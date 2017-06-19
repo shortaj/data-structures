@@ -17,9 +17,5 @@ setup(
     extras_require={
         'testing': ['ipython', 'pytest', 'pytest-watch', 'pytest-cov', 'tox']
     }
-    # entry_points={
-    #     'console_scripts': [
-    #         'client = client:client'
-    #     ]
-    # }
+
 )

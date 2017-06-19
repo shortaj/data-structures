@@ -35,7 +35,7 @@ def test_deque_append():
 def test_append_value_error():
     """."""
     ll = new_empty_list('asdf')
-    assert ll.append() == 'Appendleft method requires a value.'
+    assert ll.append() == 'Append method requires a value.'
 
 
 def test_appendleft_value_error():
@@ -146,24 +146,3 @@ def test_deque_size():
     """Module returns count of items in deque."""
     ll = new_empty_list("abcde")
     ll.size() == 5
-
-
-def test_deque_data_notiterableErr():
-    """Module raise exception deque datatype."""
-    ll = new_empty_list()
-    with pytest.raises(TypeError):
-        ll = new_empty_list(1)
-
-
-def test_deque_append_nullErr():
-    """Module raise exception append null."""
-    ll = new_empty_list()
-    with pytest.raises(ValueError):
-        ll.append("")
-
-
-def test_deque_appendleft_nullErr():
-    """Module raise exception append left null."""
-    ll = new_empty_list()
-    with pytest.raises(ValueError):
-        ll.appendleft("")

@@ -26,7 +26,7 @@ class Deque(object):
     def append(self, val=None):
         """Insert the value 'val' at the tail of the list."""
         if val is None:
-            return 'Appendleft method requires a value.'
+            return 'Append method requires a value.'
         else:
             if self.head is None:
                 self.head = Node(val)

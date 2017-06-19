@@ -2,7 +2,9 @@
 
 from setuptools import setup
 
-dependencies = ['ipython', 'pytest', 'pytest-watch', 'tox']
+extra_packages = {
+    'tsting': ['ipython', 'pytest', 'pytest-watch', 'tox']
+}
 
 setup(
     name='Stack',
@@ -10,8 +12,8 @@ setup(
     version='0.5',
     author='Orphelia Yin and Alex Short',
     author_email='ajshort2010@hotmail.com',
-    py_modules=['stack'],
+    py_modules=['stack', 'linked_list'],
     package_dir={'': 'src'},
-    install_requires=dependencies,
+    extras_require=extra_packages,
     entry_points={'console_scripts': ['stack = stack:main']}
 )

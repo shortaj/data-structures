@@ -46,6 +46,6 @@ shortpath.py, https://codefellows.github.io/sea-python-401d6/assignments/graph_4
 
 test_shortpath.py
 
-weightgraph, implement graph with weighted edges per https://codefellows.github.io/sea-python-401d6/assignments/graph_3_weighted.html
+weighted_graph.py, implement graph with weighted edges per https://codefellows.github.io/sea-python-401d6/assignments/graph_3_weighted.html
 
-test_weightgraph
+test_weighted_graph.py

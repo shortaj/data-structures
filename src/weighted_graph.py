@@ -1,9 +1,12 @@
+"""Module for Graph with weighted edges."""
+
 
 class WeightedGraph(object):
     """Docstring for python graph."""
 
     def __init__(self, graph={}):
         """Initialize graph node."""
+        graph = {}
         self._graph = graph
 
     def nodes(self):
@@ -22,7 +25,7 @@ class WeightedGraph(object):
     def add_node(self, val):
         """Add a node to graph."""
         if val not in self._graph:
-            self.setdefault(val, {})
+            self._graph.setdefault(val, {})
 
     def add_edge(self, val1, val2, weight=0):
         """Add an edge from val1 to val2
@@ -32,8 +35,8 @@ class WeightedGraph(object):
         """
         self.add_node(val1)
         self.add_node(val2)
-        if val2 not in self[val1]:
-            self[val1][val2] = weight
+        if val2 not in self._graph[val1]:
+            self._graph[val1][val2] = weight
 
     def del_node(self, val):
         """Delete a node to graph."""
@@ -72,6 +75,4 @@ class WeightedGraph(object):
             raise ValueError('Graph does not have value: ' + val1)
         if val2 not in self._graph:
             raise ValueError('Graph does not have value: ' + val2)
-        if val2 in self._graph[val1]:
-            return True
-        return False
+        return val2 in self._graph[val1]

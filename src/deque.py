@@ -2,7 +2,7 @@
 
 
 class Node(object):
-    """Docstring for Node."""
+    """Create a Node class object."""
 
     def __init__(self, data=None, previous_node=None, next_node=None):
         """Initializer for the class instance."""
@@ -12,52 +12,48 @@ class Node(object):
 
 
 class Deque(object):
-    """Docstring for Deque."""
+    """Create a Deque class data list."""
 
-    def __init__(self, data=None):
+    def __init__(self, data):
         """Initialize class instance."""
         self.head = None
         self.tail = None
         self._length = 0
-
-        if type(data) in [list, tuple, str]:
+        if data is not None:
             for item in data:
                 self.append(item)
 
-        elif data is not None:
-            raise TypeError('Requires an iterable value.')
-
-    def append(self, val):
+    def append(self, val=None):
         """Insert the value 'val' at the tail of the list."""
-        if not val:
-            raise ValueError('You must provide a not-null value.')
-        if self.head is None:
-            self.head = Node(val)
-            self.tail = self.head
-        elif self._length >= 1:
-            new_node = Node(val)
-            last_tail = self.tail
-            self.tail = new_node
-            last_tail.previous_node = self.tail
-            self.tail.next_node = last_tail
-        self._length += 1
-        return self
+        if val is None:
+            return 'Appendleft method requires a value.'
+        else:
+            if self.head is None:
+                self.head = Node(val)
+                self.tail = self.head
+            elif self._length >= 1:
+                new_node = Node(val)
+                last_tail = self.tail
+                self.tail = new_node
+                last_tail.previous_node = self.tail
+                self.tail.next_node = last_tail
+            self._length += 1
 
-    def appendleft(self, val):
+    def appendleft(self, val=None):
         """Insert the value 'val' at the head of the list."""
-        if not val:
-            raise ValueError('You must provide a not-null value.')
-        if self.head is None:
-            self.head = Node(val)
-            self.tail = self.head
-        elif self._length >= 1:
-            new_node = Node(val)
-            last_head = self.head
-            self.head = new_node
-            last_head.next_node = self.head
-            self.head.previous_node = last_head
-        self._length += 1
-        return self
+        if val is None:
+            return 'Appendleft method requires a value.'
+        else:
+            if self.head is None:
+                self.head = Node(val)
+                self.tail = self.head
+            elif self._length >= 1:
+                new_node = Node(val)
+                last_head = self.head
+                self.head = new_node
+                last_head.next_node = self.head
+                self.head.previous_node = last_head
+            self._length += 1
 
     def size(self):
         """Will return the length of the list."""

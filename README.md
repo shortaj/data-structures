@@ -1,7 +1,5 @@
 # data-structures
 
-<<<<<<< HEAD
-
 This repo contains following modules:
 
 linked_list.py, create linklist per https://codefellows.github.io/sea-python-401d6/assignments/linked_list.html
@@ -25,23 +23,29 @@ deque.py, create deque per https://codefellows.github.io/sea-python-401d6/assign
 test_deque.py
 
 binheap.py, create binary heap with min heap per https://codefellows.github.io/sea-python-401d6/assignments/binary_heap.html
-=======
-The Deque is the double-link list of the Queue link-link data structure.
 
-Methods for Deque:
-    
-    append (val)- Insert the value 'val' at the tail of the list.
+test_binheap.py
 
-    appendleft (val)- Insert the value 'val' at the head of the list.
+deque.py, implement a deque per https://codefellows.github.io/sea-python-401d6/assignments/deque.html
 
-    size - Will return the length of the list.
+test_deque.py
 
-    peek - Return data of the tail of the queue.
+graph.py, implement a graph per https://codefellows.github.io/sea-python-401d6/assignments/graph_1.html
 
-    peekleft - Return data of the tail of the queue.
+test_graph.py
 
-    popleft - Remove the head value and return, raise exception.
+graph2.py, implement graph traversal per https://codefellows.github.io/sea-python-401d6/assignments/graph_2_traversal.html
 
-    pop - Remove the tail value and return, raise exception.
+test_grapy2.py
 
->>>>>>> 081e24436094f303df651451f51275bbb7c7bab2
+priorityq.py, implement a priorityq per https://codefellows.github.io/sea-python-401d6/assignments/priority_queue.html
+
+test_priorityq.py
+
+shortpath.py, https://codefellows.github.io/sea-python-401d6/assignments/graph_4_shortest_path.html
+
+test_shortpath.py
+
+weightgraph, implement graph with weighted edges per https://codefellows.github.io/sea-python-401d6/assignments/graph_3_weighted.html
+
+test_weightgraph

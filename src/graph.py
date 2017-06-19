@@ -75,11 +75,3 @@ class Graph(object):
     def adjacent(self, val1, val2):
         """True if an edge connects val1 and val2."""
         return val2 in self._graph[val1]
-
-    # def alone_node(self):
-    #     """Return a list of all not connected nodes."""
-    #     alone = []
-    #     for node in self._graph:
-    #         if not self._graph[node]:
-    #             alone.append(node)
-    #     return alone

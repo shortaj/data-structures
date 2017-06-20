@@ -23,9 +23,8 @@ class Graph(object):
 
     def add_node(self, val):
         """Add a node to graph."""
-        # if val not in self._gdict:
-        #     self._gdict[val] = []
-        self._graph.setdefault(val, [])
+        if val not in self._graph:
+            self._graph.setdefault(val, [])
 
     def add_edge(self, val1, val2):
         """Add an edge from val1 to val2
@@ -33,10 +32,8 @@ class Graph(object):
         Inserts val1, val2 into edgelist if they don't
         already exist.
         """
-        if val1 not in self._graph:
-            self.add_node(val1)
-        if val2 not in self._graph:
-            self.add_node(val2)
+        self.add_node(val1)
+        self.add_node(val2)
         if val2 in self._graph[val1]:
             # self._graph[val1].remove()
             return

@@ -21,12 +21,9 @@ class LinkedList(object):
         self.nodelist = []
         if type(data) in [list, tuple, str]:
             for item in data:
-                self._length += 1
                 self.push(item)
-                self.nodelist.append(item)
         elif data is not None:
             raise TypeError('Requires an iterable value.')
-
 
     def push(self, val):
         """Will insert the value 'val' at the head of the list."""
@@ -37,11 +34,9 @@ class LinkedList(object):
         self.nodelist.append(val)
         self._length += 1
 
-
     def size(self):
         """Will return the length of the list."""
         return self._length
-
 
     def pop(self):
         """Will pop the first value off the head of the list and return it.
@@ -53,16 +48,14 @@ class LinkedList(object):
         popped = self.head
         self.head = self.head.next_node
         self._length -= 1
-        self.nodelist.pop(popped.data)
+        self.nodelist.pop()
         return popped.data
-
 
     def iterate_linked_list(self, node):
         """Allow for simple iterations over linked lists."""
         while node:
             yield node
             node = node.next_node
-
 
     def search(self, data):
         """Will return the node containing 'data' in the list, if present,
@@ -72,7 +65,6 @@ class LinkedList(object):
             if node.data == data:
                 return node
         return 'None'
-
 
     def remove(self, node):
         """ Will remove the given node from the list, wherever it might be
@@ -97,12 +89,7 @@ class LinkedList(object):
             raise Exception('Node not exist.')
         previous = self.head.next_node
 
-
     def display(self):
         """Will return a unicode string representing the list as if it were
             a Python tuple literal: “(12, ‘sam’, 37, ‘tango')”."""
         return tuple(['({})'.format(item) for item in self.nodelist])
-
-
-
-
